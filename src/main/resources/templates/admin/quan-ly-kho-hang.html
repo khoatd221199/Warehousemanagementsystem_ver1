@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Danh sách nhân viên | Quản trị Admin</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <LINK REL="SHORTCUT ICON"  HREF="../../static/images/title-logo.png">
+
+  <link rel="stylesheet" type="text/css" href="../../static/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+  <!-- or -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+  <!-- Font-icon css-->
+  <link rel="stylesheet" type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+  <!-- Main CSS-->
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.css" />
+
+  <script type="text/javascript" language="javascript" charset="utf-8" src="http://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" charset="utf-8"
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8"
+    src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+
+</head>
+
+<body onload="time()" class="app rtl">
+    <header class="app-header">
+
+      <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+
+
+      <ul class="app-nav">   
+        <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="../../static/images/avatar.jpg"/>
+          <ul class="dropdown">             
+            <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>             
+            <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
+          </ul>
+          <span class="app-menu__label">Trần Trung Kiên</span></a>
+      </div>
+      </ul>
+    </header>
+
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+        <img class="app-sidebar__user-avatar" src="../../static/images/lug-vn.png" width="100px" alt="User Image" />
+      </div>
+      <hr />
+      <ul class="app-menu">
+        <li>
+          <a class="app-menu__item" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
+              class="app-menu__label">Quản lý tài khoản</span></a>
+        </li>
+        <li>
+          <a class="app-menu__item active" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
+              class="app-menu__label">Quản lý kho</span></a>
+        </li>  
+        <li>
+          <a class="app-menu__item" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
+              class="app-menu__label">Quản lý cửa hàng</span></a>
+        </li> 
+      </ul>
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+          <li class="breadcrumb-item active">
+            <a href="#">Quản lý kho hàng</a>
+          </li>
+        </ul>
+        <div id="clock"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">
+              <!-- CHUC NANG -->
+              <div class="row element-button">
+                <div class="col-sm-2">
+                  <a class="btn btn-delete btn-sm nhap-tu-file" href="tao-kho-hang.html"><i
+                      class="fas fa-plus"></i>  Tạo kho hàng</a>
+                </div>
+               
+               </div>
+              <div class="box-header with-border bg-gray">
+                <div>
+                  <select id="dropdown1">
+                    <option value="">Trạng thái</option>
+                    <option value="Đang hoạt động">Đang hoạt động</option>
+                    <option value="Dừng hoạt động">Dừng hoạt động</option>
+                 
+                  </select>
+                
+                  &ensp; &ensp; Từ ngày :
+                  <input type="text" class="date_range_filter date" id="min" autocomplete="off" />
+                  đến:
+                  <input type="text" class="date_range_filter date" id="max" autocomplete="off" />
+                  <input type="button" value="Xóa lọc" class="btn btn-deleteFilter" id="clear-dates" />
+                </div>
+              </div>
+              <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered" id="OrderTable">
+                  <thead>
+                    <tr>
+                      <th width="10"><input type="checkbox" id="all" /></th>
+                      <th>Trạng thái</th>
+                      <th>Mã kho</th>
+                      <th>Tên kho</th>
+                      <th>Vị trí kho</th>
+                      <th>Ngày tạo kho</th>
+                      
+                      <th>Chức năng</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td width="10">
+                        <input type="checkbox" name="check1" value="1" />
+                      </td>
+                      <td><span class="badge bg-success">Đang hoạt động</span></td>
+                      <td>
+                        <a href="chi-tiet-kho-hang.html">
+                          <h6>KHOLUG_TANTAO</h6>
+                        </a>
+                      </td>
+                      <td>Kho Tổng Lug Tân Tạo</td>
+                      <td>23 Tân Tạo Tân Tạo Bình Tân Hồ Chí Minh</td>
+                      <td>23/09/2021</td>
+                      <td>
+                       
+                        
+                        <a class="btn btn-primary btn-sm edit" type="button" title="Sửa" onclick="location.href='./chinh-sua-kho-hang.html'"
+                      ><i class="fas fa-edit"></i></a>
+                      </td>
+                    </tr>
+
+                   
+                    <tr>
+                      <td width="10">
+                        <input type="checkbox" name="check1" value="1" />
+                      </td>
+                      <td><span class="badge bg-success">Đang hoạt động</span></td>
+                      <td>
+                        <a href="chi-tiet-kho-hang.html">
+                          <h6>KHOLUG_LETRONGTAN</h6>
+                        </a>
+                      </td>
+                      <td>Kho Tổng Lug Lê Trọng Tấn</td>
+                      <td>50 Lê Trọng Tấn Tân Phú  Hồ Chí Minh</td>
+                      <td>23/09/2021</td>
+                      <td>  
+                        <a class="btn btn-primary btn-sm edit" type="button" title="Sửa" onclick="location.href='./chinh-sua-tai-khoan.html'"
+                      ><i class="fas fa-edit"></i></a>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </main>
+
+
+
+  </div>
+  </body>
+
+  <script>
+
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("myFormModal");
+
+
+    var span = document.getElementsByClassName("btn btn-cancel")[0];
+
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+
+
+  <script src="../../static/js/popper.min.js"></script>
+
+  <script src="src/jquery.table2excel.js"></script>
+  <script src="../../static/js/main.js"></script>
+
+  <script src="../../static/js/plugins/pace.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+  <script type="text/javascript" src="../../static/js/plugins/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="../../static/js/plugins/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $("#sampleTable").DataTable();
+
+    function time() {
+      var today = new Date();
+      var weekday = new Array(7);
+      weekday[0] = "Chủ Nhật";
+      weekday[1] = "Thứ Hai";
+      weekday[2] = "Thứ Ba";
+      weekday[3] = "Thứ Tư";
+      weekday[4] = "Thứ Năm";
+      weekday[5] = "Thứ Sáu";
+      weekday[6] = "Thứ Bảy";
+      var day = weekday[today.getDay()];
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      nowTime = h + " giờ " + m + " phút " + s + " giây";
+      if (dd < 10) {
+        dd = "0" + dd;
+      }
+      if (mm < 10) {
+        mm = "0" + mm;
+      }
+      today = day + ", " + dd + "/" + mm + "/" + yyyy;
+      tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
+      document.getElementById("clock").innerHTML = tmp;
+      clocktime = setTimeout("time()", "1000", "Javascript");
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+    }
+  </script>
+  <script>
+    function deleteRow(r) {
+      var i = r.parentNode.parentNode.rowIndex;
+      document.getElementById("myTable").deleteRow(i);
+    }
+    jQuery(function () {
+      jQuery(".trash").click(function () {
+        swal({
+          title: "Cảnh báo",
+          text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
+          buttons: ["Hủy bỏ", "Đồng ý"],
+        }).then((willDelete) => {
+          if (willDelete) {
+            swal("Đã xóa thành công.!", {});
+          }
+        });
+      });
+    });
+    oTable = $("#sampleTable").dataTable();
+    $("#all").click(function (e) {
+      $("#sampleTable tbody :checkbox").prop(
+        "checked",
+        $(this).is(":checked")
+      );
+      e.stopImmediatePropagation();
+    });
+  </script>
+  <script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+        var min = $("#min").datepicker("getDate");
+        var max = $("#max").datepicker("getDate");
+
+        var startDate = new Date(data[4]);
+        var endDate = new Date(data[5]);
+
+        if (min == null && max == null) {
+          return true;
+        }
+        if (min == null && endDate <= max) {
+          return true;
+        }
+        if (max == null && startDate >= min) {
+          return true;
+        }
+        if (startDate >= min && endDate <= max) {
+          return true;
+        }
+
+        return false;
+      });
+
+      var table = $("#example").DataTable();
+
+      $("#dropdown1").on("change", function () {
+        table.columns(1).search(this.value).draw();
+      });
+      $("#dropdown2").on("change", function () {
+        table.columns(3).search(this.value).draw();
+      });
+
+      $("#min").datepicker({
+        onSelect: function () {
+          table.draw();
+        },
+        dateFormat: "m/d/yy",
+        changeMonth: true,
+        changeYear: true,
+        onClose: function (date, inst) {
+
+          var selectedDate = $("#min").datepicker("getDate");
+          var followingDate = new Date(selectedDate.getTime() + 86400000);
+
+          $("#max").datepicker("option", "minDate", followingDate);
+        },
+      });
+      $("#max").datepicker({
+        onSelect: function () {
+          table.draw();
+        },
+        dateFormat: "m/d/yy",
+        changeMonth: true,
+        changeYear: true,
+        autoclose: true,
+        clearBtn: true,
+      });
+
+      var table = $("#OrderTable").DataTable({});
+
+
+      $("#min, #max").select(function () {
+        table.draw();
+      });
+
+      $("input").click(function () {
+        $("#dropdown1").val("");
+        table.columns(1).search("").draw();
+        $("#dropdown2").val("");
+        table.columns(3).search("").draw();
+      });
+
+      var $dates = $("#min, #max").datepicker();
+
+      $("#clear-dates").on("click", function () {
+        $dates.datepicker("setDate", null);
+        table.draw();
+      });
+    });
+  </script>
+<!--start-script-->
+<script type="text/javascript">
+  function DropDown(el) {
+    this.dd = el;
+    this.initEvents();
+  }
+  DropDown.prototype = {
+    initEvents : function() {
+      var obj = this;
+
+      obj.dd.on('click', function(event){
+        $(this).toggleClass('active');
+        event.stopPropagation();
+      });	
+    }
+  }
+  $(function() {
+
+    var dd = new DropDown( $('#dd') );
+
+    $(document).click(function() {
+      // all dropdowns
+      $('.wrapper-dropdown-2').removeClass('active');
+    });
+
+  });
+</script>
+<!--end-script-->
+</html>
