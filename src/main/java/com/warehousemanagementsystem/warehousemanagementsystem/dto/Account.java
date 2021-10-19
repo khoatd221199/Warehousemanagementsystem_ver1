@@ -4,8 +4,10 @@ public class Account {
     private String username;
     private String fullname;
     private String password;
-    private String role;
+    private String roleid;
+    private String rolename;
     private String warehouseid;
+
 
     public Account() {
     }
@@ -15,11 +17,12 @@ public class Account {
         this.password = password;
     }
 
-    public Account(String username, String fullname, String password, String role, String warehouseid) {
+    public Account(String username, String fullname, String password, String roleid, String rolename, String warehouseid) {
         this.username = username;
         this.fullname = fullname;
         this.password = password;
-        this.role = role;
+        this.roleid = roleid;
+        this.rolename = rolename;
         this.warehouseid = warehouseid;
     }
 
@@ -47,12 +50,21 @@ public class Account {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+
+    public String getRoleid() {
+        return roleid;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleid(String roleid) {
+        this.roleid = roleid;
+    }
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     public String getWarehouseid() {

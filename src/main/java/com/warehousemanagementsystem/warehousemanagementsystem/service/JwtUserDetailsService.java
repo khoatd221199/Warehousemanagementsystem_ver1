@@ -42,13 +42,14 @@ public class JwtUserDetailsService implements UserDetailsService {
 		ResponseEntity<Token> authenticationResponse = restTemplate.exchange(url+"/api/account/authenticate",
 				HttpMethod.POST, requestAcc, Token.class);
 		if (authenticationResponse.getStatusCode().equals(HttpStatus.OK)) {
-			String role = authenticationResponse.getBody().getRole();
+			String role = authenticationResponse.getBody().getRoleid();
 			String token = "Bearer " + authenticationResponse.getBody().getToken();
 
 //			HttpServletRequest request=null;
 			HttpSession session = httpSessionFactory.getObject();
 			session.setAttribute("Token", token);
-//			System.out.printf(token);
+			System.out.printf(token);
+
 			String a = (String) session.getAttribute("Token");
 			System.out.println("A"+a);
 		}
@@ -59,11 +60,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 		HttpEntity<String> requestEntity = new HttpEntity<String>(headers);
 		ResponseEntity<Account> u= restTemplate.exchange(url +"/api/employee/checklogin/"+username,
 				HttpMethod.GET,requestEntity, Account.class);
+		System.out.println(u.getBody().getRolename());
 		session.setAttribute("Account",u.getBody());
 		if (u == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
-		UserDetails user1 = User.withUsername(u.getBody().getUsername()).password(u.getBody().getPassword()).authorities(u.getBody().getRole()).build();
+		UserDetails user1 = User.withUsername(u.getBody().getUsername()).password(u.getBody().getPassword()).authorities(u.getBody().getRoleid()).build();
 		return user1;
 
 	}

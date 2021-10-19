@@ -2,14 +2,14 @@ package com.warehousemanagementsystem.warehousemanagementsystem.dto;
 
 public class Token {
     private String token;
-    private String role;
+    private String roleid;
 
     public Token() {
     }
 
-    public Token(String token, String role) {
+    public Token(String token, String roleid) {
         this.token = token;
-        this.role = role;
+        this.roleid = roleid;
     }
 
     public String getToken() {
@@ -20,11 +20,11 @@ public class Token {
         this.token = token;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleid() {
+        return roleid;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleid(String roleid) {
+        this.roleid = roleid;
     }
 }

@@ -6,15 +6,15 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <LINK REL="SHORTCUT ICON"  HREF="../../static/images/title-logo.png">
-    
-  <link rel="stylesheet" type="text/css" href="../../static/css/main.css" />
+  <LINK REL="SHORTCUT ICON"  HREF="images/title-logo.png">
+
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css"
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
@@ -30,141 +30,150 @@
   <script type="text/javascript" language="javascript" charset="utf-8" src="http://code.jquery.com/jquery-3.3.1.min.js">
   </script>
   <script type="text/javascript" language="javascript" charset="utf-8"
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8"
-    src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+          src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8"
-    src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
+          src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8"
-    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+          src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
 
 </head>
 
 <body onload="time()" class="app rtl">
-  <header class="app-header">
-    
-    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+<header class="app-header">
+
+  <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
 
-    <ul class="app-nav">   
-      <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="../../static/images/avatar.jpg"/>
-        <ul class="dropdown">             
-          <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>             
-          <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
-        </ul>
-        <span class="app-menu__label">Trần Trung Kiên</span></a>
+  <ul class="app-nav">
+    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="images/avatar.jpg"/>
+      <ul class="dropdown">
+        <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>
+        <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
+      </ul>
+      <span class="app-menu__label">Trần Trung Kiên</span></a>
     </div>
-    </ul>
-  </header>
- 
-  <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-  <aside class="app-sidebar">
-    <div class="app-sidebar__user">
-      <img class="app-sidebar__user-avatar" src="../../static/images/lug-vn.png" width="100px" alt="User Image" />
-    </div>
-    <hr />
-    <ul class="app-menu">
-      <li>
-        <a class="app-menu__item" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
-            class="app-menu__label">Quản lý tài khoản</span></a>
+  </ul>
+</header>
+
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <div class="app-sidebar__user">
+    <img class="app-sidebar__user-avatar" src="images/lug-vn.png" width="100px" alt="User Image" />
+  </div>
+  <hr />
+  <ul class="app-menu">
+    <li>
+      <a class="app-menu__item" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
+              class="app-menu__label">Quản lý tài khoản</span></a>
+    </li>
+    <li>
+      <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
+              class="app-menu__label">Quản lý kho</span></a>
+    </li>
+    <li>
+      <a class="app-menu__item active" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
+              class="app-menu__label">Quản lý cửa hàng</span></a>
+    </li>
+  </ul>
+</aside>
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active">
+        <a href="quan-ly-cua-hang.html"><b>Quản lý cửa hàng</b></a>
       </li>
       <li>
-        <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
-            class="app-menu__label">Quản lý kho</span></a>
-      </li>  
+        <h1><i class='bx bxs-chevron-right bx-sm'></i></h1>
+      </li>
       <li>
-        <a class="app-menu__item active" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
-            class="app-menu__label">Quản lý cửa hàng</span></a>
-      </li> 
+        <a href="tao-cua-hang.html">Tạo cửa hàng</a>
+      </li>
     </ul>
-  </aside>
-  <main class="app-content">
-    <div class="app-title">
-      <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item active">
-          <a href="quan-ly-cua-hang.html"><b>Quản lý cửa hàng</b></a>
-        </li>
-        <li>
-          <h1><i class='bx bxs-chevron-right bx-sm'></i></h1>
-        </li> 
-        <li>
-          <a href="tao-cua-hang.html">Tạo cửa hàng</a>
-        </li>
-      </ul>
-      <div id="clock"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="tile">
-          <div class="tile-body">
-            <!-- CHUC NANG -->
-                     
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <!-- CHUC NANG -->
 
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label class="control-label">Mã cửa hàng:</label>
+              <input class="form-control" type="text"  value="" />
+            </div>
+            <div class="form-group col-md-6">
+              <label class="control-label">Tên cửa hàng:</label>
+              <input class="form-control" type="text"  value=" " />
+
+            </div>
+
+
+
+
+            <div class="form-group col col-md-6">
+              <label class="control-label">Địa chỉ cửa hàng: </label>
+              <input class="form-control" type="text"  value="" />
+            </div>
+
+
+            <div class="form-group col col-md-6">
+              <label class="control-label">Trạng thái:</label>
+              <select name="" id="input" class="form-control" required="required">
+                <option value="">Đang hoạt động</option>
+                <option value="">Ngưng hoạt động</option>
+              </select>
+            </div>
+
+            <div class="form-group col col-md-12">
+              <label class="control-label">Cửa hàng: </label>
+              <select name="" id="input" class="form-control" required="required">
+                <option value="">Store Quận 1 - ID12 - 24 Trương Định, Quận 1, Hồ Chí Minh</option>
+                <option value="">Store Quận 2 - ID2342 - 24 Trương Định, Quận 2, Hồ Chí Minh</option>
+              </select>
+            </div>
+
+
+            <div class="form-group col-md-6"></div>
+            <div class="form-group col-md-6">
+              <label class="control-label">.</label>
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label class="control-label">Mã cửa hàng:</label>
-                  <input class="form-control" type="text"  value="" />
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">Tên cửa hàng:</label>
-                  <input class="form-control" type="text"  value=" " />
-                 
-                </div>
-            
-
-                
-               
-                <div class="form-group col col-md-6">
-                  <label class="control-label">Địa chỉ cửa hàng: </label>
-                  <input class="form-control" type="text"  value="" />
-                </div>
-                
-               
-                <div class="form-group col col-md-6">
-                  <label class="control-label">Trạng thái:</label>
-                  <select name="" id="input" class="form-control" required="required">
-                    <option value="">Đang hoạt động</option>
-                    <option value="">Ngưng hoạt động</option>
-                  </select>
-                </div>
-                
-                <div class="form-group col-md-6"></div>
-                <div class="form-group col-md-6">
-                  <label class="control-label">.</label>
-                  <div class="row">
-                    <div class="form-group col-md-6"><a class="btn btn-save" data-dismiss="modal" href="#">Tạo</a></div>
-                    <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" href="quan-ly-cua-hang.html">Quay về</a></div>
-                  </div>     
-                </div>
-  
-                
+                <div class="form-group col-md-6"><a class="btn btn-save" data-dismiss="modal" href="#">Tạo</a></div>
+                <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" href="quan-ly-cua-hang.html">Quay về</a></div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
     </div>
-
-  
-
-    
-  </main>
+  </div>
+  </div>
 
 
- 
+
+
+</main>
+
+
+
 </div>
 </body>
 
 <script>
- 
+
   var modal = document.getElementById("myModal");
 
   var btn = document.getElementById("myFormModal");
 
-  
+
   var span = document.getElementsByClassName("btn btn-cancel")[0];
 
- 
+
   btn.onclick = function () {
     modal.style.display = "block";
   };
@@ -181,23 +190,23 @@
 </script>
 
 
-<script src="../../static/js/popper.min.js"></script>
+<script src="js/popper.min.js"></script>
 
 <script src="src/jquery.table2excel.js"></script>
-<script src="../../static/js/main.js"></script>
+<script src="js/main.js"></script>
 
-<script src="../../static/js/plugins/pace.min.js"></script>
+<script src="js/plugins/pace.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-<script type="text/javascript" src="../../static/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../static/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
   $("#sampleTable").DataTable();
 
   function time() {
     var today = new Date();
-var weekday = new Array(7);
+    var weekday = new Array(7);
     weekday[0] = "Chủ Nhật";
     weekday[1] = "Thứ Hai";
     weekday[2] = "Thứ Ba";
@@ -255,14 +264,14 @@ var weekday = new Array(7);
   oTable = $("#sampleTable").dataTable();
   $("#all").click(function (e) {
     $("#sampleTable tbody :checkbox").prop(
-      "checked",
-      $(this).is(":checked")
+            "checked",
+            $(this).is(":checked")
     );
     e.stopImmediatePropagation();
   });
 </script>
 <script>
-     var dropdown = document.getElementsByClassName("dropdown-btn");
+  var dropdown = document.getElementsByClassName("dropdown-btn");
   var i;
 
   for (i = 0; i < dropdown.length; i++) {
@@ -307,7 +316,7 @@ var weekday = new Array(7);
     $("#dropdown1").on("change", function () {
       table.columns(1).search(this.value).draw();
     });
-$("#dropdown2").on("change", function () {
+    $("#dropdown2").on("change", function () {
       table.columns(3).search(this.value).draw();
     });
 
@@ -319,7 +328,7 @@ $("#dropdown2").on("change", function () {
       changeMonth: true,
       changeYear: true,
       onClose: function (date, inst) {
-  
+
         var selectedDate = $("#min").datepicker("getDate");
         var followingDate = new Date(selectedDate.getTime() + 86400000);
 
@@ -339,7 +348,7 @@ $("#dropdown2").on("change", function () {
 
     var table = $("#OrderTable").DataTable({});
 
-   
+
     $("#min, #max").select(function () {
       table.draw();
     });
@@ -372,7 +381,7 @@ $("#dropdown2").on("change", function () {
       obj.dd.on('click', function(event){
         $(this).toggleClass('active');
         event.stopPropagation();
-      });	
+      });
     }
   }
   $(function() {
