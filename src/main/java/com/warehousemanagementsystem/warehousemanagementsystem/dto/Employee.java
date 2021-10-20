@@ -23,7 +23,7 @@ public class Employee {
 //    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private String datetimecreated;
     private String roleid;
-    private String role;
+    private String rolename;
 
     private String status;
 
@@ -31,7 +31,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String username, String warehousename, String warehouseid, String password, String fullname, String sex, String birthday, String email, String datetimecreated, String roleid, String role, String status) {
+    public Employee(String username, String warehousename, String warehouseid, String password, String fullname, String sex, String birthday, String email, String datetimecreated, String roleid, String rolename, String status) {
         this.username = username;
         this.warehousename = warehousename;
         this.warehouseid = warehouseid;
@@ -42,7 +42,7 @@ public class Employee {
         this.email = email;
         this.datetimecreated = datetimecreated;
         this.roleid = roleid;
-        this.role = role;
+        this.rolename = rolename;
         this.status = status;
     }
 
@@ -126,12 +126,12 @@ public class Employee {
         this.datetimecreated = datetimecreated;
     }
 
-    public String getRole() {
-        return role;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     public String getStatus() {

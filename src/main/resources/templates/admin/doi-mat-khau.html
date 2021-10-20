@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>Đổi mật khẩu</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <LINK REL="SHORTCUT ICON"  HREF="../../static/images/title-logo.png">
+  <link rel="icon" th:href="@{/images/lugicon.png}">
 
-  <link rel="stylesheet" type="text/css" href="../../static/css/main.css" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
 
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" th:href="@{/./style.css}" />
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
   <!-- Main CSS-->
@@ -37,7 +37,13 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8"
     src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
-
+  <script>
+    $(document).ready(function(){
+      $("a.submit").click(function(){
+        document.getElementById("myForm").submit();
+      });
+    });
+  </script>
 </head>
 
 <body onload="time()" class="app rtl">
@@ -46,13 +52,13 @@
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
 
-    <ul class="app-nav">   
-      <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="../../static/images/avatar.jpg"/>
+    <ul class="app-nav">
+      <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img th:src="@{/images/avatar.jpg}"/>
         <ul class="dropdown">             
           <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>             
           <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
         </ul>
-        <span class="app-menu__label">Trần Trung Kiên</span></a>
+        <span class="app-menu__label" th:text="${session.Account.fullname}" th:unless="${session == null}"></span>
     </div>
     </ul>
   </header>
@@ -60,22 +66,22 @@
   <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
     <div class="app-sidebar__user">
-      <img class="app-sidebar__user-avatar" src="../../static/images/lug-vn.png" width="100px" alt="User Image" />
+      <img class="app-sidebar__user-avatar" th:src="@{/images/lug-vn.png}" width="100px" alt="User Image" />
     </div>
     <hr />
     <ul class="app-menu">
       <li>
-        <a class="app-menu__item active" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
-            class="app-menu__label">Quản lý tài khoản</span></a>
+        <a class="app-menu__item active" th:href="@{/admin/quan-ly-tai-khoan}"><i class="app-menu__icon bx bxs-user"></i><span
+                class="app-menu__label">Quản lý tài khoản</span></a>
       </li>
       <li>
-        <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
-            class="app-menu__label">Quản lý kho</span></a>
-      </li>  
+        <a class="app-menu__item active" th:href="@{/admin/quan-ly-kho-hang}"><i class="app-menu__icon bx bx-package"></i><span
+                class="app-menu__label">Quản lý kho</span></a>
+      </li>
       <li>
-        <a class="app-menu__item" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
-            class="app-menu__label">Quản lý cửa hàng</span></a>
-      </li> 
+        <a class="app-menu__item" th:href="@{/admin/quan-ly-cua-hang}"><i class="app-menu__icon bx bx-store"></i><span
+                class="app-menu__label">Quản lý cửa hàng</span></a>
+      </li>
     </ul>
   </aside>
   <main class="app-content">
@@ -94,13 +100,14 @@
           <h1><i class='bx bxs-chevron-right bx-sm'></i></h1>
         </li>
         <li class="breadcrumb-item active">
-          <a href="doi-mat-khau.html">Đổi mật khẩu</a>
+          <a href="">Đổi mật khẩu</a>
         </li>
       </ul>
       <div id="clock"></div>
     </div>
     <div class="row">
       <div class="col-md-12">
+        <form  th:action="@{/admin/savepassword}" th:object="${employee}" id="myForm" method="POST">
         <div class="tile">
           <div class="tile-body">
             <!-- CHUC NANG -->  
@@ -109,23 +116,23 @@
               <div class="form-group col-md-6">
               <div class="form-group col-md-6">
                 <label class="control-label">Tài khoản:</label>
-                <input class="form-control" type="text" readonly  value="Khoa2211" />
+                <input th:field="*{username}"  class="form-control" type="text" readonly  />
               </div>
 
               
               
               <div class="form-group col-md-6">
                 <label class="control-label">Mật khẩu:</label>
-                <input class="form-control" type="password"  value="khoa2211" />
+                <input th:field="*{password}" class="form-control" type="password"  value="khoa2211" />
                
               </div>
 
               
     
-              <div class="form-group col col-md-6">
-                <label class="control-label">Nhập lại mật khẩu: </label>
-                <input class="form-control" type="password"  value="khoa2211" />
-              </div>
+<!--              <div class="form-group col col-md-6">-->
+<!--                <label class="control-label">Nhập lại mật khẩu: </label>-->
+<!--                <input class="form-control" type="password"  value="khoa2211" />-->
+<!--              </div>-->
 
           
           
@@ -136,8 +143,8 @@
               <div class="form-group col-md-6">
                 <label class="control-label">.</label>
                 <div class="row">
-                  <div class="form-group col-md-6"><a class="btn btn-save" data-dismiss="modal" href="chinh-sua-tai-khoan.html">Lưu</a></div>
-                  <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" href="chinh-sua-tai-khoan.html">Quay về</a></div>
+                  <div class="form-group col-md-6"><a class="btn btn-save submit" data-dismiss="modal" onclick="this.form.submit()" >Lưu</a></div>
+                  <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" th:href="@{/admin/quan-ly-tai-khoan}">Quay về</a></div>
                 </div>   
               </div>
           
@@ -153,6 +160,7 @@
             </div>
           </div>
         </div>
+        </form>
       </div>
     </div>
 
@@ -195,17 +203,17 @@
 </script>
 
 
-<script src="../../static/js/popper.min.js"></script>
+<script th:src="@{/js/popper.min.js}"></script>
 
-<script src="src/jquery.table2excel.js"></script>
-<script src="../../static/js/main.js"></script>
+<script th:src="@{/src/jquery.table2excel.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
-<script src="../../static/js/plugins/pace.min.js"></script>
+<script th:src="@{/js/plugins/pace.min.js}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-<script type="text/javascript" src="../../static/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../static/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/plugins/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugins/dataTables.bootstrap.min.js}"></script>
 <script type="text/javascript">
   $("#sampleTable").DataTable();
 

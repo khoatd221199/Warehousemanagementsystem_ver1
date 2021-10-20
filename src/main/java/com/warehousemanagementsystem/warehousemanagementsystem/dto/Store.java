@@ -1,12 +1,11 @@
 package com.warehousemanagementsystem.warehousemanagementsystem.dto;
 
-public class Warehouse {
-    private String warehouseid;
-
+public class Store {
 
     private String storeid;
 
-    private String storename;
+
+    private String username;
 
 
     private String name;
@@ -17,31 +16,19 @@ public class Warehouse {
 
     private String status;
 
+
     private String datetimecreate;
 
-    public Warehouse() {
-    }
-    public Warehouse(String warehouseid, String name, String address) {
-        this.warehouseid = warehouseid;
-        this.name = name;
-        this.address = address;
-    }
-    public Warehouse(String warehouseid, String storeid, String storename, String name, String address, String status, String datetimecreate) {
-        this.warehouseid = warehouseid;
+    public Store(String storeid, String username, String name, String address, String status, String datetimecreate) {
         this.storeid = storeid;
-        this.storename = storename;
+        this.username = username;
         this.name = name;
         this.address = address;
         this.status = status;
         this.datetimecreate = datetimecreate;
     }
 
-    public String getWarehouseid() {
-        return warehouseid;
-    }
-
-    public void setWarehouseid(String warehouseid) {
-        this.warehouseid = warehouseid;
+    public Store() {
     }
 
     public String getStoreid() {
@@ -52,12 +39,12 @@ public class Warehouse {
         this.storeid = storeid;
     }
 
-    public String getStorename() {
-        return storename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setStorename(String storename) {
-        this.storename = storename;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <LINK REL="SHORTCUT ICON"  HREF="images/title-logo.png">
+  <link rel="icon" th:href="@{/images/lugicon.png}">
 
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
@@ -15,13 +15,13 @@
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <!-- Font-icon css-->
 
-  <link rel="stylesheet" th:href="@{/./style.css}" />
+  <link rel="stylesheet" th:href="@{/style.css}" />
   <link      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
 
-  <link rel="stylesheet" href="./style.css" />
+
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
   <!-- Main CSS-->
@@ -55,12 +55,12 @@
 
 
   <ul class="app-nav">
-    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="images/avatar.jpg"/>
+    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img th:src="@{/images/avatar.jpg}"/>
       <ul class="dropdown">
         <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>
-        <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
+        <li> <a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
       </ul>
-      <span class="app-menu__label">Trần Trung Kiên</span></a>
+      <span class="app-menu__label" th:text="${session.Account.fullname}" th:unless="${session == null}"></span>
     </div>
   </ul>
 </header>
@@ -68,20 +68,20 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <div class="app-sidebar__user">
-    <img class="app-sidebar__user-avatar" src="images/lug-vn.png" width="100px" alt="User Image" />
+    <img class="app-sidebar__user-avatar" th:src="@{/images/lug-vn.png}" width="100px" alt="User Image" />
   </div>
   <hr />
   <ul class="app-menu">
     <li>
-      <a class="app-menu__item active" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
+      <a class="app-menu__item active" th:href="@{/admin/quan-ly-tai-khoan}"><i class="app-menu__icon bx bxs-user"></i><span
               class="app-menu__label">Quản lý tài khoản</span></a>
     </li>
     <li>
-      <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
+      <a class="app-menu__item " th:href="@{/admin/quan-ly-kho-hang}"><i class="app-menu__icon bx bx-package"></i><span
               class="app-menu__label">Quản lý kho</span></a>
     </li>
     <li>
-      <a class="app-menu__item" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
+      <a class="app-menu__item" th:href="@{quan-ly-cua-hang}"><i class="app-menu__icon bx bx-store"></i><span
               class="app-menu__label">Quản lý cửa hàng</span></a>
     </li>
   </ul>
@@ -90,19 +90,19 @@
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">
       <li>
-        <a href="quan-ly-tai-khoan.html"><b>Quản lí tài khoản</b></a>
+        <a th:href="@{/admin/quan-ly-tai-khoan}"><b>Quản lí tài khoản</b></a>
       </li>
       <li>
         <h1><i class='bx bxs-chevron-right bx-sm'></i></h1>
       </li>
       <li class="breadcrumb-item active">
-        <a href="chinh-sua-tai-khoan.html">Chỉnh sửa tài khoản</a>
+        <a th:href="@{/admin/chinh-sua-tai-khoan}">Chỉnh sửa tài khoản</a>
       </li>
     </ul>
     <div id="clock"></div>
   </div>
   <div class="row">
-    <form th:action="@{/saveedit}" th:object="${emp}" id="myForm" method="POST">
+    <form th:action="@{/admin/saveedit}" th:object="${emp}" id="myForm" method="POST">
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
@@ -112,11 +112,12 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label class="control-label">Tài khoản:</label>
-                  <input th:field="*{username}" class="form-control" type="text" value="" />
+                  <input th:field="*{username}" class="form-control" type="text" readonly value="" />
                 </div>
                 <div class="form-group col col-md-6">
                   <label class="control-label">Mật khẩu</label>
-                  <a class="btn btn-add" data-dismiss="modal" href="doi-mat-khau.html">Đổi mật khẩu</a>
+                  <a class="btn btn-add" data-dismiss="modal" th:href="@{/admin/chinh-sua-tai-khoan/sua-mat-khau/{username}(username=${emp.username})}">Đổi mật khẩu</a>
+<!--                  <a class="btn btn-primary btn-sm edit" type="button" title="Sửa" th:href="@{/admin/chinh-sua-tai-khoan/{username}(username=${emp.username})}"-->
                 </div>
               </div>
             </div>
@@ -194,7 +195,7 @@
               <div class="row">
 
                 <div class="form-group col-md-6"><a class="btn btn-save submit" data-dismiss="modal" onclick="this.form.submit()"  href="#">Lưu</a></div>
-                <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" th:href="@{/admin}">Quay về</a></div>
+                <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" th:href="@{/admin/quan-ly-tai-khoan}">Quay về</a></div>
               </div>
             </div>
 

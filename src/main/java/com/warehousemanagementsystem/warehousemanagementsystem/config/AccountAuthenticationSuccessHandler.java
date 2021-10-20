@@ -43,7 +43,7 @@ public class AccountAuthenticationSuccessHandler implements AuthenticationSucces
 //            System.out.println("phuc" + a);
             redirectStrategy.sendRedirect(arg0, arg1, "/user");
         } else if (hasAdminRole) {
-            redirectStrategy.sendRedirect(arg0, arg1, "/admin");
+            redirectStrategy.sendRedirect(arg0, arg1, "/admin/quan-ly-tai-khoan");
         } else {
             throw new IllegalStateException();
         }

@@ -56,15 +56,11 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-
-		http.authorizeRequests().antMatchers("/admin/**","/403").hasAuthority("ROLE_ADMIN").antMatchers("/user/**").hasAuthority("ROLE_USER");
+		http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ROLE_ADMIN").antMatchers("/user/**").hasAuthority("ROLE_USER");
 		// Cấu hình concurrent session
 		http.sessionManagement()
-		.invalidSessionUrl("/login?message=timeout")
-
-		.maximumSessions(1).expiredUrl("/login?message=max_session");
-		//cái này cho ai cà chớn
-//		.maximumSessions(1).expiredUrl("/login?message=max_session").maxSessionsPreventsLogin(true);
+				.invalidSessionUrl("/login?message=timeout")
+				.maximumSessions(1).expiredUrl("/login?message=max_session");
 
 		// Cấu hình cho Login Form.
 		http.authorizeRequests().and().formLogin()//
@@ -74,10 +70,11 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 				.successHandler(successHandler)
 				.failureHandler(customAuthenticationFailureHandler)
 				.usernameParameter("username")//
-				.passwordParameter("password");
+				.passwordParameter("password")
 				// Cấu hình cho Logout Page.
-
+				.and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/login?message=logout");
 //		http.sessionManagement().maximumSessions(1).expiredUrl("/login?expired");
+
 
 	}
 }

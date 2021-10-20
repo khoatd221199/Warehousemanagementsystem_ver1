@@ -62,6 +62,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 				HttpMethod.GET,requestEntity, Account.class);
 		System.out.println(u.getBody().getRolename());
 		session.setAttribute("Account",u.getBody());
+		session.setAttribute("username",u.getBody().getUsername());
 		if (u == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}

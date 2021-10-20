@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Danh sách nhân viên | Quản trị Admin</title>
+  <title>Quản lý tài khoản</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,7 +48,7 @@
 
 
   <ul class="app-nav">
-    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="images/avatar.jpg"/>
+    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img th:src="@{/images/avatar.jpg}"/>
       <ul class="dropdown">
         <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>
         <li> <a th:href="@{/logout} "><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
@@ -62,20 +62,20 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <div class="app-sidebar__user">
-    <img class="app-sidebar__user-avatar" src="images/lug-vn.png" width="100px" alt="User Image" />
+    <img class="app-sidebar__user-avatar" th:src="@{/images/lug-vn.png}" width="100px" alt="User Image" />
   </div>
   <hr />
   <ul class="app-menu">
     <li>
-      <a class="app-menu__item active" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
+      <a class="app-menu__item active" th:href="@{/admin/quan-ly-tai-khoan}"><i class="app-menu__icon bx bxs-user"></i><span
               class="app-menu__label">Quản lý tài khoản</span></a>
     </li>
     <li>
-      <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
+      <a class="app-menu__item " th:href="@{/admin/quan-ly-kho-hang}"><i class="app-menu__icon bx bx-package"></i><span
               class="app-menu__label">Quản lý kho</span></a>
     </li>
     <li>
-      <a class="app-menu__item" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
+      <a class="app-menu__item" th:href="@{quan-ly-cua-hang}"><i class="app-menu__icon bx bx-store"></i><span
               class="app-menu__label">Quản lý cửa hàng</span></a>
     </li>
   </ul>
@@ -96,7 +96,7 @@
           <!-- CHUC NANG -->
           <div class="row element-button">
             <div class="col-sm-2">
-              <a class="btn btn-delete btn-sm nhap-tu-file" th:href="@{/tao-tai-khoan}"><i
+              <a class="btn btn-delete btn-sm nhap-tu-file" th:href="@{/admin/tao-tai-khoan}"><i
                       class="fas fa-plus"></i> Tạo mới tài khoản</a>
             </div>
           </div>
@@ -160,12 +160,12 @@
                 <td th:text="${emp.fullname}"></td>
                 <td th:text="${emp.email}"></td>
                 <td th:text="${emp.datetimecreated}"></td>
-                <td th:text="${emp.role}"></td>
+                <td th:text="${emp.rolename}"></td>
                 <td th:text="${emp.warehousename}"></td>
                 <td>
 
 
-                  <a class="btn btn-primary btn-sm edit" type="button" title="Sửa" th:href="@{/chinh-sua-tai-khoan/{username}(username=${emp.username})}"
+                  <a class="btn btn-primary btn-sm edit" type="button" title="Sửa" th:href="@{/admin/chinh-sua-tai-khoan/{username}(username=${emp.username})}"
                   ><i class="fas fa-edit"></i></a>
                 </td>
               </tr>
@@ -224,8 +224,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-<script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/plugins/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugins/dataTables.bootstrap.min.js}"></script>
 <script type="text/javascript">
   $("#sampleTable").DataTable();
 

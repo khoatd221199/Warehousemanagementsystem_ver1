@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>Tạo cửa hàng</title>
@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <LINK REL="SHORTCUT ICON"  HREF="images/title-logo.png">
 
-  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
@@ -18,8 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
-
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" th:href="@{/./style.css}" />
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
   <!-- Main CSS-->
@@ -37,7 +36,13 @@
           src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8"
           src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
-
+  <script>
+    $(document).ready(function(){
+      $("a.submit").click(function(){
+        document.getElementById("myForm").submit();
+      });
+    });
+  </script>
 </head>
 
 <body onload="time()" class="app rtl">
@@ -47,12 +52,12 @@
 
 
   <ul class="app-nav">
-    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img src="images/avatar.jpg"/>
+    <div id="dd" class="wrapper-dropdown-2" tabindex="1"><img th:src="@{/images/avatar.jpg}"/>
       <ul class="dropdown">
         <li> <a href="thong-tin-user.html"><i class="fa fa-user"></i>Tài khoản</a> </li>
         <li> <a href="login-page.html"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a> </li>
       </ul>
-      <span class="app-menu__label">Trần Trung Kiên</span></a>
+      <span class="app-menu__label" th:text="${session.Account.fullname}" th:unless="${session == null}"></span>
     </div>
   </ul>
 </header>
@@ -60,20 +65,20 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <div class="app-sidebar__user">
-    <img class="app-sidebar__user-avatar" src="images/lug-vn.png" width="100px" alt="User Image" />
+    <img class="app-sidebar__user-avatar" th:src="@{/images/lug-vn.png}" width="100px" alt="User Image" />
   </div>
   <hr />
   <ul class="app-menu">
     <li>
-      <a class="app-menu__item" href="quan-ly-tai-khoan.html"><i class="app-menu__icon bx bxs-user"></i><span
+      <a class="app-menu__item " th:href="@{/admin/quan-ly-tai-khoan}"><i class="app-menu__icon bx bxs-user"></i><span
               class="app-menu__label">Quản lý tài khoản</span></a>
     </li>
     <li>
-      <a class="app-menu__item" href="quan-ly-kho-hang.html"><i class="app-menu__icon bx bx-package"></i><span
+      <a class="app-menu__item " th:href="@{/admin/quan-ly-kho-hang}"><i class="app-menu__icon bx bx-package"></i><span
               class="app-menu__label">Quản lý kho</span></a>
     </li>
     <li>
-      <a class="app-menu__item active" href="quan-ly-cua-hang.html"><i class="app-menu__icon bx bx-store"></i><span
+      <a class="app-menu__item active" th:href="@{quan-ly-cua-hang}"><i class="app-menu__icon bx bx-store"></i><span
               class="app-menu__label">Quản lý cửa hàng</span></a>
     </li>
   </ul>
@@ -95,6 +100,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <form  th:action="@{/admin/saveStore}" th:object="${store}" id="myForm" method="POST">
       <div class="tile">
         <div class="tile-body">
           <!-- CHUC NANG -->
@@ -103,11 +109,11 @@
           <div class="row">
             <div class="form-group col-md-6">
               <label class="control-label">Mã cửa hàng:</label>
-              <input class="form-control" type="text"  value="" />
+              <input th:field="*{storeid}" class="form-control" type="text"  value="" />
             </div>
             <div class="form-group col-md-6">
               <label class="control-label">Tên cửa hàng:</label>
-              <input class="form-control" type="text"  value=" " />
+              <input th:field="*{name}" class="form-control" type="text"  value=" " />
 
             </div>
 
@@ -116,33 +122,34 @@
 
             <div class="form-group col col-md-6">
               <label class="control-label">Địa chỉ cửa hàng: </label>
-              <input class="form-control" type="text"  value="" />
-            </div>
+              <input th:field="*{address}" class="form-control" type="text"  value="" />
 
+            </div>
 
             <div class="form-group col col-md-6">
               <label class="control-label">Trạng thái:</label>
-              <select name="" id="input2" class="form-control" required="required">
-                <option value="">Đang hoạt động</option>
-                <option value="">Ngưng hoạt động</option>
+              <select th:field="*{status}"   class="form-control" required="required">
+                <option th:value="'on'">Đang hoạt động</option>
+                <option th:value="'off'">Dừng hoạt động</option>
               </select>
+
             </div>
 
-            <div class="form-group col col-md-12">
-              <label class="control-label">Cửa hàng: </label>
-              <select name="" id="input" class="form-control" required="required">
-                <option value="">Store Quận 1 - ID12 - 24 Trương Định, Quận 1, Hồ Chí Minh</option>
-                <option value="">Store Quận 2 - ID2342 - 24 Trương Định, Quận 2, Hồ Chí Minh</option>
-              </select>
-            </div>
+<!--            <div class="form-group col col-md-12">-->
+<!--              <label class="control-label">Cửa hàng: </label>-->
+<!--              <select name="" id="input" class="form-control" required="required">-->
+<!--                <option value="">Store Quận 1 - ID12 - 24 Trương Định, Quận 1, Hồ Chí Minh</option>-->
+<!--                <option value="">Store Quận 2 - ID2342 - 24 Trương Định, Quận 2, Hồ Chí Minh</option>-->
+<!--              </select>-->
+<!--            </div>-->
 
 
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label class="control-label">.</label>
               <div class="row">
-                <div class="form-group col-md-6"><a class="btn btn-save" data-dismiss="modal" href="#">Tạo</a></div>
-                <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" href="quan-ly-cua-hang.html">Quay về</a></div>
+                <div class="form-group col-md-6"><a class="btn btn-save submit" data-dismiss="modal" onclick="this.form.submit()"  href="#">Tạo</a></div>
+                <div class="form-group col-md-6"><a class="btn btn-cancel" data-dismiss="modal" th:href="@{/admin/quan-ly-cua-hang}">Quay về</a></div>
               </div>
             </div>
 
@@ -150,6 +157,7 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
   </div>
@@ -190,17 +198,17 @@
 </script>
 
 
-<script src="js/popper.min.js"></script>
+<script th:src="@{/js/popper.min.js}"></script>
 
-<script src="src/jquery.table2excel.js"></script>
-<script src="js/main.js"></script>
+<script th:src="@{/src/jquery.table2excel.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
-<script src="js/plugins/pace.min.js"></script>
+<script th:src="@{/js/plugins/pace.min.js}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-<script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/plugins/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugins/dataTables.bootstrap.min.js}"></script>
 <script type="text/javascript">
   $("#sampleTable").DataTable();
 

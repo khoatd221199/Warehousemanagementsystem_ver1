@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 public  class RestTemplateExchange {
     public static RestTemplate restTemplate = new RestTemplate();
-    public static String url = "http://c681-2402-800-639e-a18e-a142-9252-e55f-cc3b.ngrok.io";
+    public static String url = "http://3b56-27-71-108-244.ngrok.io";
 
 
     public static <T> ResponseEntity<T> useExchangeMethodsOfRestTemplate
